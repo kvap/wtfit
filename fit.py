@@ -135,8 +135,7 @@ def decode_product_name(msg):
 		if profile.field_name(f[0], f[1]) == 'MANUFACTURER':
 			manufacturer = f[3]
 		if profile.field_name(f[0], f[1]) == 'PRODUCT' and manufacturer is not None:
-			prodname = profile.product_name(manufacturer, f[3])
-			f[3] = "%s(%d)" % (prodname, f[3])
+			f[3] = profile.product_name(manufacturer, f[3])
 
 def decode_fields(msg):
 	for f in msg['fields']:

@@ -18,4 +18,4 @@ def timestamp(ts):
 		delta = datetime.timedelta(seconds=ts)
 	else:
 		delta = datetime.timedelta(seconds=ts)
-	return "%s(%d)" % (base + delta, ts)
+	return base + delta

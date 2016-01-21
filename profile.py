@@ -785,7 +785,7 @@ msg_field_names = {
 		3: "SERIAL_NUMBER",
 		7: "CUM_OPERATING_TIME",
 		27: "PRODUCT_NAME",
-		2: "MANUFACTURER",
+		2: ("MANUFACTURER", manufacturer_name),
 		4: "PRODUCT",
 		5: "SOFTWARE_VERSION",
 		10: "BATTERY_VOLTAGE",
@@ -824,7 +824,7 @@ msg_field_names = {
 		2: "SERIAL_NUMBER",
 		3: "TIME_CREATED",
 		6: "SCHEDULED_TIME",
-		0: "MANUFACTURER",
+		0: ("MANUFACTURER", manufacturer_name),
 		1: "PRODUCT",
 		4: "COMPLETED",
 		5: "TYPE",
@@ -961,7 +961,7 @@ msg_field_names = {
 		253: ("TIMESTAMP", decode.timestamp),
 		3: "SERIAL_NUMBER",
 		4: "TIME_CREATED",
-		1: "MANUFACTURER",
+		1: ("MANUFACTURER", manufacturer_name),
 		2: "PRODUCT",
 		0: "TYPE",
 	},
@@ -1021,7 +1021,7 @@ msg_field_names = {
 	},
 	#SLAVE_DEVICE
 	106: {
-		0: "MANUFACTURER",
+		0: ("MANUFACTURER", manufacturer_name),
 		1: "PRODUCT",
 	},
 	#CADENCE_ZONE
