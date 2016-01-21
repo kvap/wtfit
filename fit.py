@@ -124,9 +124,23 @@ def parse_defmessage(f, head):
 	r['fielddefs'] = []
 	for i in range(fieldsnum):
 		r['fielddefs'].append(parse_fielddef(f))
-	#r['fielddefs'].sort(key=lambda fdef: fdef['type'])
 
 	return r
+
+def decode_product_name(msg):
+	manufacturer = None
+	prodname = None
+
+	for f in msg['fields']:
+		if profile.field_name(f[0], f[1]) == 'MANUFACTURER':
+			manufacturer = f[3]
+		if profile.field_name(f[0], f[1]) == 'PRODUCT' and manufacturer is not None:
+			prodname = profile.product_name(manufacturer, f[3])
+			f[3] = "%s(%d)" % (prodname, f[3])
+
+def decode_fields(msg):
+	for f in msg['fields']:
+		f[3] = profile.field_decode(f[0], f[1], f[3])
 
 def parse_datamessage(f, head, mdef):
 	r = {
@@ -141,14 +155,15 @@ def parse_datamessage(f, head, mdef):
 		else:
 			value = parse_field(f, fdef['basetype'], fdef['size'], mdef['endian'])
 
-		value = profile.field_decode(mdef['msgtype'], fdef['type'], value)
-
-		r['fields'].append((
+		r['fields'].append([
 			mdef['msgtype'],
 			fdef['type'],
 			fdef['basetype'],
 			value,
-		))
+		])
+
+	decode_product_name(r)
+	decode_fields(r)
 
 	return r
 
