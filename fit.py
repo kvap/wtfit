@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # -----------------------------------------------------------------------------
 # I wrote this file. As long as you retain this notice you can do whatever you
